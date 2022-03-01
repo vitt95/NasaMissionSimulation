@@ -7,7 +7,7 @@ function httpGetAllLaunches(req, res){
 }
 
 function isValidLaunch(launch){
-    return (launch.mission && launch.rocket && launch.launchDate && launch.destination);
+    return (launch.mission && launch.rocket && launch.launchDate && launch.target);
 }
 
 function httpAddNewLaunch(req, res){
@@ -15,12 +15,19 @@ function httpAddNewLaunch(req, res){
     
     if(isValidLaunch(launch)){
         launch.launchDate = new Date(launch.launchDate);
+        if(isNaN(launch.launchDate)){
+            return res.status(400).json({
+                error: 'Invalid launch date'
+            });
+        }
 
         addNewLaunch(launch);
         return res.status(200).json(launch);
     }
 
-    return res.status(400).json();
+    return res.status(400).json({
+        error: 'Missing required launch property'
+    });
 
 }
 
