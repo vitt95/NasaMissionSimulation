@@ -17,8 +17,8 @@ app.use(morgan('combined'));
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public')));
-app.use(launchesRouter);
-app.use(planetsRouter);
+app.use('/launches', launchesRouter);
+app.use('/planets', planetsRouter);
 
 /**
  * Using * char, if express doesn't find route path available then will search in react router.

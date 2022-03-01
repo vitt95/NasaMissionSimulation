@@ -6,6 +6,9 @@ const {
     httpGetAllPlanets,
 } = require('../../controllers/planets.controller');
 
-planetsRouter.get('/planets', getAllPlanets);
+/**
+ * Base path sprcified in app.js /planets
+ */
+planetsRouter.get('/', httpGetAllPlanets);
 
 module.exports = planetsRouter;
