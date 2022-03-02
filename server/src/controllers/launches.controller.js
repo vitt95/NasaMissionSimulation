@@ -27,7 +27,7 @@ function httpAddNewLaunch(req, res){
         }
 
         addNewLaunch(launch);
-        return res.status(200).json(launch);
+        return res.status(201).json(launch);
     }
 
     return res.status(400).json({
